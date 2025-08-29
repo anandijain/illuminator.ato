@@ -1,4 +1,67 @@
-"""Brand new atopile project!"""
+#pragma experiment("FOR_LOOP")
+import ElectricPower
+from "parts/XUNPU_DC_005_A200/XUNPU_DC_005_A200.ato" import XUNPU_DC_005_A200_package                                                 
+from "parts/HCTL_TC_6615_9_0_160G/HCTL_TC_6615_9_0_160G.ato" import HCTL_TC_6615_9_0_160G_package                                             
+from "parts/XINGLIGHT_XL_1608UBC_04/XINGLIGHT_XL_1608UBC_04.ato" import XINGLIGHT_XL_1608UBC_04_package 
+from "parts/YAGEO_RC0805FR_07120RL/YAGEO_RC0805FR_07120RL.ato" import YAGEO_RC0805FR_07120RL_package 
+from "parts/UMW_AO3400A/UMW_AO3400A.ato" import UMW_AO3400A_package
+from "parts/XUNPU_USB_234_BCW/XUNPU_USB_234_BCW.ato" import XUNPU_USB_234_BCW_package
+from "parts/SHOU_HAN_PJ_327A_5JJ/SHOU_HAN_PJ_327A_5JJ.ato" import SHOU_HAN_PJ_327A_5JJ_package
+from "parts/YAGEO_RC0805FR_071KL/YAGEO_RC0805FR_071KL.ato" import YAGEO_RC0805FR_071KL_package 
+from "parts/YAGEO_RC0805FR_07100RL/YAGEO_RC0805FR_07100RL.ato" import YAGEO_RC0805FR_07100RL_package  
+from "parts/Sharp_Microelectronics_PC817X2CSP9F/Sharp_Microelectronics_PC817X2CSP9F.ato" import Sharp_Microelectronics_PC817X2CSP9F_package
+from "parts/FOJAN_FRC0805F1003TS/FOJAN_FRC0805F1003TS.ato" import FOJAN_FRC0805F1003TS_package
 
+module R_LED:
+    r120 = new YAGEO_RC0805FR_07120RL_package
+    led = new XINGLIGHT_XL_1608UBC_04_package
+
+"""
+we are going to start with a basic barrel (5v and gnd) to an LED and then a resistor to gnd 
+"""
 module App:
-    pass
+    jack = new XUNPU_DC_005_A200_package
+    rleds = new R_LED[36]
+    power_5v = new ElectricPower
+    assert power_5v.voltage within 5V +/- 5%
+    assert power_5v.max_current <= 5A
+    fet = new UMW_AO3400A_package
+    usb = new XUNPU_USB_234_BCW_package
+    trs_sig = new SHOU_HAN_PJ_327A_5JJ_package # Tip -> optocoupler Ring -> FET Sleeve -> GND
+    trs_mcdc2 = new SHOU_HAN_PJ_327A_5JJ_package # optocoupler/ pico shutter trigger
+    r1k = new YAGEO_RC0805FR_071KL_package
+    r100 = new YAGEO_RC0805FR_07100RL_package
+    r100k = new FOJAN_FRC0805F1003TS_package
+    opto = new Sharp_Microelectronics_PC817X2CSP9F_package
+
+    signal v ~ power_5v.hv
+    signal gnd ~ power_5v.lv
+
+    v ~ jack.1
+    gnd ~ jack.2
+    for rled in rleds:
+        v ~ rled.r120.1
+        rled.r120.2 ~ rled.led.A
+        rled.led.K ~ fet.D
+
+    fet.S ~ gnd
+
+    v ~ usb.VBUS
+    gnd ~ usb.GND
+
+    gnd ~ trs_sig.S
+    
+    trs_sig.R ~ r100.1
+    r100.2 ~ fet.G
+
+    # Gate pulldown
+    r100k.1 ~ fet.G
+    r100k.2 ~ gnd
+
+
+    trs_sig.T ~ r1k.1
+    r1k.2 ~ opto.1
+    opto.2 ~ gnd
+     
+    trs_mcdc2.S ~ opto.3
+    trs_mcdc2.T ~ opto.4

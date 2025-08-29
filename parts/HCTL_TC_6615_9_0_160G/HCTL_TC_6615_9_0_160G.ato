@@ -1,0 +1,20 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component HCTL_TC_6615_9_0_160G_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C6575016", date="2025-08-29T01:54:19.125099+00:00", checksum="865db95dd08ca56c5afca8fa3622c93fedec17c1e9df894617cd665337e0853d">
+
+    trait is_atomic_part<manufacturer="HCTL", partnumber="TC-6615-9.0-160G", footprint="KEY-TH_PTS645VXX83XLFS.kicad_mod", symbol="TC-6615-9.0-160G.kicad_sym", model="KEY-TH_4P-L7.5-W8.4-H7.1-LS7.0-P4.5.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C6575016", manufacturer="HCTL", partno="TC-6615-9.0-160G">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    pin 4
+    pin 2
+    pin 3
+    pin 1

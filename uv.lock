@@ -1,0 +1,50 @@
+version = 1
+revision = 2
+requires-python = ">=3.13"
+
+[[package]]
+name = "illuminator"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "kicad-skip" },
+    { name = "kiutils" },
+    { name = "sexpdata" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "kicad-skip", specifier = ">=0.2.5" },
+    { name = "kiutils", specifier = ">=1.4.8" },
+    { name = "sexpdata", specifier = ">=1.0.2" },
+]
+
+[[package]]
+name = "kicad-skip"
+version = "0.2.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "sexpdata" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/71/21/141a62d1ce5be29cd3cc9d61b8035457e495d071cd2ce57648812e0f0d0a/kicad-skip-0.2.5.tar.gz", hash = "sha256:dc6b47215da1e82f2cc8567f0f1e8e5ac8297f5e1941d967192e043380e08c83", size = 60567, upload-time = "2024-02-16T00:16:12.305Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/83/be/d6d94eb42f93f59d2ccdf07feffe7b34eb6c00ad5cf3a85f2af1f9c8c5e6/kicad_skip-0.2.5-py3-none-any.whl", hash = "sha256:276ba578d42859d3e3db5d39881853b8d3dcf28ec11f37ae363f8b23a0a83888", size = 62786, upload-time = "2024-02-16T00:16:09.66Z" },
+]
+
+[[package]]
+name = "kiutils"
+version = "1.4.8"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/db/07/04d7a636eaf9f54f6e7cdfc2117843ef4cc6a6360a9866fbd76bc2a0d0dd/kiutils-1.4.8.tar.gz", hash = "sha256:18c5803283e579cfe8772955e7702548d7139e0fc630daa579ed6b2b767db846", size = 84024, upload-time = "2024-02-02T23:38:00.283Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8c/c0/381ece43b464ce8aff02a327b0d5cdc011b8c0d9a652e245b05e0bb0810a/kiutils-1.4.8-py3-none-any.whl", hash = "sha256:ca7c5c7eafb7bc33daa3d6cfe42cc704be2bcd2206103b28ad2682d88a6072ae", size = 93827, upload-time = "2024-02-02T23:37:58.443Z" },
+]
+
+[[package]]
+name = "sexpdata"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a7/7f/369a478863a39351be75e0a12602bc29196b31f87bf3432bed2be6379f8e/sexpdata-1.0.2.tar.gz", hash = "sha256:92b67b0361f6766f8f9e44b9519cf3fbcfafa755db85bbf893c3e1cf4ddac109", size = 8906, upload-time = "2024-01-09T07:09:59.096Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/f1/f3/ec9f8cc20dc1f34c926f0ec3f43b73fa2da59cf08e432fb8ae5b666b2027/sexpdata-1.0.2-py3-none-any.whl", hash = "sha256:b39c918f055a85c5c35c1d4f7930aabb176bd29016e5ba5692e7e849914b2a1a", size = 10337, upload-time = "2024-01-09T07:09:57.185Z" },
+]

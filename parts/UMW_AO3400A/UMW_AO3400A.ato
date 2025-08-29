@@ -1,0 +1,19 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UMW_AO3400A_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C347475", date="2025-08-29T18:04:03.295061+00:00", checksum="e7bdc8ac5f03764dd69946aa40068215023ca74d08cf0e0912a53be1ccbd0abf">
+
+    trait is_atomic_part<manufacturer="UMW", partnumber="AO3400A", footprint="SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod", symbol="AO3400A_C347475.kicad_sym", model="SOT-23-3P_L2.9-W1.3-H1.0-LS2.4-P0.95.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C347475", manufacturer="UMW", partno="AO3400A">
+    trait has_designator_prefix<prefix="Q">
+
+    # pins
+    signal D ~ pin 3
+    signal G ~ pin 1
+    signal S ~ pin 2

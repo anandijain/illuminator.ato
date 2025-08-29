@@ -1,0 +1,18 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component XINGLIGHT_XL_1608UBC_04_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C965807", date="2025-08-29T02:21:35.809943+00:00", checksum="94c8c35f23d2d1ae285aa170e498ca4e56be76ee4aa4dc306aa235c665a1df81">
+
+    trait is_atomic_part<manufacturer="XINGLIGHT", partnumber="XL-1608UBC-04", footprint="LED0603-RD_BLUE.kicad_mod", symbol="XL-1608UBC-04.kicad_sym", model="LED0603-RD_BLUE.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C965807", manufacturer="XINGLIGHT", partno="XL-1608UBC-04">
+    trait has_designator_prefix<prefix="LED">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

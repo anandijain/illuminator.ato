@@ -1,0 +1,22 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component XUNPU_USB_234_BCW_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C720528", date="2025-08-29T18:38:55.578752+00:00", checksum="6eccc12c794e74975dcf8c27cbe5ef35bf6b74417a146dbb4169461615167abf">
+
+    trait is_atomic_part<manufacturer="XUNPU", partnumber="USB-234-BCW", footprint="USB-A-SMD_USB-234-BCW.kicad_mod", symbol="USB-234-BCW.kicad_sym", model="USB-A-SMD_USB-234-BCW.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C720528", manufacturer="XUNPU", partno="USB-234-BCW">
+    trait has_designator_prefix<prefix="USB">
+
+    # pins
+    signal Dneg ~ pin 2
+    signal Dpos ~ pin 3
+    signal GND ~ pin 4
+    GND ~ pin 5
+    GND ~ pin 6
+    signal VBUS ~ pin 1

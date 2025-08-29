@@ -1,0 +1,11 @@
+[project]
+name = "illuminator"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "kicad-skip>=0.2.5",
+    "kiutils>=1.4.8",
+    "sexpdata>=1.0.2",
+]

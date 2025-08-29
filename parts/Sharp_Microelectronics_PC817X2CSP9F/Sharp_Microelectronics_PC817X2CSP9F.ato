@@ -1,0 +1,22 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Sharp_Microelectronics_PC817X2CSP9F_package:
+    """PC817X2CSP9F"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C66405", date="2025-08-29T21:04:46.831498+00:00", checksum="21283189f750634759360f6cf53d522a331804ff4c9f818831e03fb64f0f3901">
+
+    trait is_atomic_part<manufacturer="Sharp Microelectronics", partnumber="PC817X2CSP9F", footprint="SMD-4_L4.6-W6.5-P2.54-LS10.2-TL.kicad_mod", symbol="PC817X2CSP9F.kicad_sym", model="SMD-4_L4.6-W6.5-H3.7-LS10.2-P2.54.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C66405", manufacturer="Sharp Microelectronics", partno="PC817X2CSP9F">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    pin 1
+    pin 2
+    pin 3
+    pin 4

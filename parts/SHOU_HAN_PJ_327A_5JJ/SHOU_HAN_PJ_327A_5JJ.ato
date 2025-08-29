@@ -1,0 +1,21 @@
+#pragma experiment("TRAITS")
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component SHOU_HAN_PJ_327A_5JJ_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    # trait is_auto_generated<system="ato_part", source="easyeda:C668605", date="2025-08-29T19:35:50.643073+00:00", checksum="33079506394a2d44f74ac67375c9345919f8334d817bfc0873343477f2a78965">
+
+    trait is_atomic_part<manufacturer="SHOU HAN", partnumber="PJ-327A 5JJ", footprint="AUDIO-SMD_PJ-327A5JJ.kicad_mod", symbol="PJ-327A5JJ.kicad_sym", model="AUDIO-SMD_PJ-327A5JJ.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C668605", manufacturer="SHOU HAN", partno="PJ-327A 5JJ">
+    trait has_designator_prefix<prefix="CN">
+
+    # pins
+    signal S ~pin 1
+    pin 2
+    signal T ~ pin 3
+    signal R ~ pin 4
+    pin 5
