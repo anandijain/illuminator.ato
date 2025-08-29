@@ -39,6 +39,7 @@ module App:
 
     v ~ jack.1
     gnd ~ jack.2
+
     for rled in rleds:
         v ~ rled.r120.1
         rled.r120.2 ~ rled.led.A
@@ -65,3 +66,5 @@ module App:
      
     trs_mcdc2.S ~ opto.3
     trs_mcdc2.T ~ opto.4
+
+    trs_mcdc2.R~ gnd
