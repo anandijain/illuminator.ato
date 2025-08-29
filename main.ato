@@ -26,7 +26,7 @@ module App:
     rleds = new R_LED[36]
     power_5v = new ElectricPower
     assert power_5v.voltage within 5V +/- 5%
-    assert power_5v.max_current = 5A
+    assert power_5v.max_current <= 5A
     fet = new UMW_AO3400A_package
     usb = new XUNPU_USB_234_BCW_package
     trs_sig = new SHOU_HAN_PJ_327A_5JJ_package # Tip -> optocoupler Ring -> FET Sleeve -> GND
