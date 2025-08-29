@@ -22,6 +22,13 @@
         (descr "atopile: part lib: SHOU_HAN_PJ_327A_5JJ")
     )
     (lib
+        (name "Samsung_Electro_Mechanics_CL31A107MQHNNNE")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/Samsung_Electro_Mechanics_CL31A107MQHNNNE")
+        (options "")
+        (descr "atopile: part lib: Samsung_Electro_Mechanics_CL31A107MQHNNNE")
+    )
+    (lib
         (name "Sharp_Microelectronics_PC817X2CSP9F")
         (type "KiCad")
         (uri "${KIPRJMOD}/../../parts/Sharp_Microelectronics_PC817X2CSP9F")
@@ -55,6 +62,13 @@
         (uri "${KIPRJMOD}/../../parts/XUNPU_USB_234_BCW")
         (options "")
         (descr "atopile: part lib: XUNPU_USB_234_BCW")
+    )
+    (lib
+        (name "YAGEO_CC0805KRX7R9BB104")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../parts/YAGEO_CC0805KRX7R9BB104")
+        (options "")
+        (descr "atopile: part lib: YAGEO_CC0805KRX7R9BB104")
     )
     (lib
         (name "YAGEO_RC0805FR_07100RL")

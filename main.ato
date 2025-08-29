@@ -1,7 +1,7 @@
 #pragma experiment("FOR_LOOP")
 import ElectricPower
+
 from "parts/XUNPU_DC_005_A200/XUNPU_DC_005_A200.ato" import XUNPU_DC_005_A200_package                                                 
-from "parts/HCTL_TC_6615_9_0_160G/HCTL_TC_6615_9_0_160G.ato" import HCTL_TC_6615_9_0_160G_package                                             
 from "parts/XINGLIGHT_XL_1608UBC_04/XINGLIGHT_XL_1608UBC_04.ato" import XINGLIGHT_XL_1608UBC_04_package 
 from "parts/YAGEO_RC0805FR_07120RL/YAGEO_RC0805FR_07120RL.ato" import YAGEO_RC0805FR_07120RL_package 
 from "parts/UMW_AO3400A/UMW_AO3400A.ato" import UMW_AO3400A_package
@@ -11,6 +11,8 @@ from "parts/YAGEO_RC0805FR_071KL/YAGEO_RC0805FR_071KL.ato" import YAGEO_RC0805FR
 from "parts/YAGEO_RC0805FR_07100RL/YAGEO_RC0805FR_07100RL.ato" import YAGEO_RC0805FR_07100RL_package  
 from "parts/Sharp_Microelectronics_PC817X2CSP9F/Sharp_Microelectronics_PC817X2CSP9F.ato" import Sharp_Microelectronics_PC817X2CSP9F_package
 from "parts/FOJAN_FRC0805F1003TS/FOJAN_FRC0805F1003TS.ato" import FOJAN_FRC0805F1003TS_package
+from "parts/Samsung_Electro_Mechanics_CL31A107MQHNNNE/Samsung_Electro_Mechanics_CL31A107MQHNNNE.ato" import Samsung_Electro_Mechanics_CL31A107MQHNNNE_package 
+from "parts/YAGEO_CC0805KRX7R9BB104/YAGEO_CC0805KRX7R9BB104.ato" import YAGEO_CC0805KRX7R9BB104_package
 
 module R_LED:
     r120 = new YAGEO_RC0805FR_07120RL_package
@@ -24,7 +26,7 @@ module App:
     rleds = new R_LED[36]
     power_5v = new ElectricPower
     assert power_5v.voltage within 5V +/- 5%
-    assert power_5v.max_current <= 5A
+    assert power_5v.max_current = 5A
     fet = new UMW_AO3400A_package
     usb = new XUNPU_USB_234_BCW_package
     trs_sig = new SHOU_HAN_PJ_327A_5JJ_package # Tip -> optocoupler Ring -> FET Sleeve -> GND
@@ -33,12 +35,18 @@ module App:
     r100 = new YAGEO_RC0805FR_07100RL_package
     r100k = new FOJAN_FRC0805F1003TS_package
     opto = new Sharp_Microelectronics_PC817X2CSP9F_package
+    c100uf = new Samsung_Electro_Mechanics_CL31A107MQHNNNE_package
+    c100nf = new YAGEO_CC0805KRX7R9BB104_package
 
     signal v ~ power_5v.hv
     signal gnd ~ power_5v.lv
 
     v ~ jack.1
     gnd ~ jack.2
+
+    # decoupling
+    c100uf.1 ~ v
+    c100uf.2 ~ gnd
 
     for rled in rleds:
         v ~ rled.r120.1
@@ -49,6 +57,8 @@ module App:
 
     v ~ usb.VBUS
     gnd ~ usb.GND
+    c100nf.1 ~ usb.VBUS
+    c100nf.2 ~ gnd
 
     gnd ~ trs_sig.S
     
