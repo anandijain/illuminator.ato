@@ -14,14 +14,15 @@ from "parts/Sharp_Microelectronics_PC817X2CSP9F/Sharp_Microelectronics_PC817X2CS
 from "parts/FOJAN_FRC0805F1003TS/FOJAN_FRC0805F1003TS.ato" import FOJAN_FRC0805F1003TS_package
 from "parts/Samsung_Electro_Mechanics_CL31A107MQHNNNE/Samsung_Electro_Mechanics_CL31A107MQHNNNE.ato" import Samsung_Electro_Mechanics_CL31A107MQHNNNE_package 
 from "parts/YAGEO_CC0805KRX7R9BB104/YAGEO_CC0805KRX7R9BB104.ato" import YAGEO_CC0805KRX7R9BB104_package
-# from "atopile/mounting_holes/MountingHole.py" import MountingHole
-from "mounting_holes/MountingHole.py" import MountingHole
-# from "atopile/mounting-holes/usage.ato" import Usage
-# from "atopile/mounting_holes/usage.ato" import MountingHole
-# from "atopile/mounting-holes/mounting-holes.ato" import MountingHole
+from "atopile/mounting-holes/MountingHole.py" import MountingHole
+
 module R_LED:
     r120 = new YAGEO_RC0805FR_07120RL_package
     led = new XINGLIGHT_XL_1608UBC_04_package
+
+module MH:
+    m = new MountingHole<metric_screw_size="M3", pad_type="NoPad">
+
 
 """
 we are going to start with a basic barrel (5v and gnd) to an LED and then a resistor to gnd 
@@ -42,7 +43,8 @@ module App:
     opto = new Sharp_Microelectronics_PC817X2CSP9F_package
     c100uf = new Samsung_Electro_Mechanics_CL31A107MQHNNNE_package
     c100nf = new YAGEO_CC0805KRX7R9BB104_package
-    ms = new MountingHole<metric_screw_size="M3", pad_type="NoPad">
+    ms = new MH[4]
+    
     # Usage.M
     signal v ~ power_5v.hv
     signal gnd ~ power_5v.lv
