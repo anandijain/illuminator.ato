@@ -283,7 +283,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "default_w_conductors.step",
       "svg": "",
       "vrml": ""
     },
