@@ -16,6 +16,6 @@ component SHOU_HAN_PJ_327A_5JJ_package:
     # pins
     signal S ~pin 1
     pin 2
-    signal T ~ pin 3
-    signal R ~ pin 4
+    signal R ~ pin 3
+    signal T ~ pin 4
     pin 5

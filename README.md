@@ -1,5 +1,10 @@
 # illuminator
 
+TODO before order:
+* fix mounting holes position
+* cad enclosure and box 
+* order the diffuser and lens
+
 petri dish illuminator for timelapses 
 
 the functionality basically has an 

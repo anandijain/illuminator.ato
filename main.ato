@@ -77,4 +77,4 @@ module App:
     trs_mcdc2.S ~ opto.3
     trs_mcdc2.T ~ opto.4
 
-    trs_mcdc2.R~ gnd
+    # trs_mcdc2.R~ gnd
