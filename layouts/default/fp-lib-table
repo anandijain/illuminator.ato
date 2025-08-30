@@ -91,4 +91,11 @@
         (options "")
         (descr "atopile: part lib: YAGEO_RC0805FR_071KL")
     )
+    (lib
+        (name "MountingHole")
+        (type "KiCad")
+        (uri "${KIPRJMOD}/../../.ato/modules/atopile/mounting-holes/footprints/MountingHole")
+        (options "")
+        (descr "atopile: part lib: MountingHole")
+    )
 )
