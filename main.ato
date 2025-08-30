@@ -15,9 +15,10 @@ from "parts/FOJAN_FRC0805F1003TS/FOJAN_FRC0805F1003TS.ato" import FOJAN_FRC0805F
 from "parts/Samsung_Electro_Mechanics_CL31A107MQHNNNE/Samsung_Electro_Mechanics_CL31A107MQHNNNE.ato" import Samsung_Electro_Mechanics_CL31A107MQHNNNE_package 
 from "parts/YAGEO_CC0805KRX7R9BB104/YAGEO_CC0805KRX7R9BB104.ato" import YAGEO_CC0805KRX7R9BB104_package
 # from "atopile/mounting_holes/MountingHole.py" import MountingHole
+from "mounting_holes/MountingHole.py" import MountingHole
 # from "atopile/mounting-holes/usage.ato" import Usage
-from "atopile/mounting_holes/usage.ato" import MountingHole
-
+# from "atopile/mounting_holes/usage.ato" import MountingHole
+# from "atopile/mounting-holes/mounting-holes.ato" import MountingHole
 module R_LED:
     r120 = new YAGEO_RC0805FR_07120RL_package
     led = new XINGLIGHT_XL_1608UBC_04_package
