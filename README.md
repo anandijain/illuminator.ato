@@ -1,9 +1,5 @@
 # illuminator
 
-TODO before order:
-* fix mounting holes position
-* cad enclosure and box 
-* order the diffuser and lens
 
 petri dish illuminator for timelapses 
 
@@ -46,6 +42,14 @@ A second TRS connector is used to connect the MC-DC2 connector from camera to th
 
 The path is 5v -> (R -> LED)* -> FET_DRAIN -> FET_SOURCE -> GND.
 
+TODO before order:
+
+
+Done:
+* fix mounting holes position
+* cad enclosure and box 
+* order the diffuser and lens
+*silkscreen art 
 
 ### 8/28/25 
 
