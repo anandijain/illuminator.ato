@@ -50,6 +50,11 @@ The path is 5v -> (R -> LED)* -> FET_DRAIN -> FET_SOURCE -> GND.
 * make sure no autofocus is on cuz that increases the time to shorting the MC-DC2 to an unknown amount of time
 
 
+## lcd
+* to get mc_dc2_test/lcd.py to work you need to copy [this](https://github.com/russhughes/st7789py_mpy/blob/master/lib/st7789py.py) to /lib/ with `mpremote`
+
+
+
 TODO before order:
 
 
