@@ -53,6 +53,10 @@ The path is 5v -> (R -> LED)* -> FET_DRAIN -> FET_SOURCE -> GND.
 ## lcd
 * to get mc_dc2_test/lcd.py to work you need to copy [this](https://github.com/russhughes/st7789py_mpy/blob/master/lib/st7789py.py) to /lib/ with `mpremote`
 
+the interface of the lcd is three buttons, two are for incrementing and decrementing the timelapse parameters the third is for advancing to the next parameter
+
+todo ui:
+- see if its possible to start timelapse when both + and - are hit simultaneously or something
 
 
 TODO before order:
