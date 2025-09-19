@@ -33,14 +33,22 @@ the ground of the barrel goes to the gnd of the USB.
 
 The usb is an TYPE-A connector that is used solely for powering the Pico (DO NOT USE FOR A FULL PI, the USB 2.0 spec is limited at 1.5A but a Pi can draw 5A.)
 
+## pinouts 
 There is a TRS (i dont like JST) port used for connecting GPIO from Pi/Pico to the board.
 The Tip of `trs_sig` is only used by the pico, and is for turning on the optocoupler
 The Ring is used by both for turning on the FET (the LEDs)
 The Sleeve is GND. 
 
+Note: on the TRS breakout cable, white is tip (pico w pin GP16), red is ring (pico w pin GP17), black is sleeve (pico w pin 23 (GND))
+
+
 A second TRS connector is used to connect the MC-DC2 connector from camera to the optocoupler. Unfortunately, it seems common that MC-DC2 uses a 2.5mm TRS, but I am just going to use an adapter so that I don't need to buy 2.5mm jacks that I'll never use. 
 
 The path is 5v -> (R -> LED)* -> FET_DRAIN -> FET_SOURCE -> GND.
+
+## camera 
+* make sure no autofocus is on cuz that increases the time to shorting the MC-DC2 to an unknown amount of time
+
 
 TODO before order:
 
