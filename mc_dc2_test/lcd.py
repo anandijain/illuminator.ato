@@ -24,24 +24,26 @@ interval = 30
 dur_hr = 36
 
 cursor_idx = 0
-for i, key in enumerate(param_keys):
-    prefix = "> " if i == cursor_idx else "  "
-    tft.text(font, "{}{}: {}".format(prefix, key, params[key]), 0, i*TEXT_H)
+def draw():
+    for i, key in enumerate(param_keys):
+        prefix = "> " if i == cursor_idx else "  "
+        tft.text(font, "{}{}: {}".format(prefix, key, params[key]), 0, i*TEXT_H)
+draw()
+
+change_delta = 0   # -1, 0, +1 pending changes for current field
+next_pending = False
 
 def incr_cb(p):
-    global params, param_keys, cursor_idx
-    params[param_keys[cursor_idx]] += 1
-    
+    global change_delta
+    change_delta += 1     # simple integer change is safe
 
 def decr_cb(p):
-    global params, param_keys, cursor_idx
-    params[param_keys[cursor_idx]] -= 1
+    global change_delta
+    change_delta -= 1
 
-    
 def next_cb(p):
-    global cursor_idx
-    cursor_idx = (cursor_idx + 1) % N_PARAMS
-    print("new cursor index: ", cursor_idx)
+    global next_pending
+    next_pending = True
 
 decr = Pin(20, Pin.IN, Pin.PULL_UP)
 incr = Pin(19, Pin.IN, Pin.PULL_UP)
@@ -51,8 +53,24 @@ decr.irq(trigger=Pin.IRQ_RISING, handler=decr_cb)
 incr.irq(trigger=Pin.IRQ_RISING, handler=incr_cb)
 next.irq(trigger=Pin.IRQ_RISING, handler=next_cb)
 
-i = 0
+last_apply = time.ticks_ms()
+APPLY_EVERY_MS = 30   # small debounce / coalesce window
+
 while True:
-    print(i, ": decr: ", decr.value(), " incr: ", incr.value(), " next: ", next.value())
-    time.sleep(.1)
-    i += 1
+    now = time.ticks_ms()
+
+    # handle "next" (change selected field)
+    if next_pending:
+        next_pending = False
+        cursor_idx = (cursor_idx + 1) % N_PARAMS
+        draw()
+
+    # coalesce +/- presses and apply periodically (debounce-ish)
+    if change_delta != 0 and time.ticks_diff(now, last_apply) >= APPLY_EVERY_MS:
+        key = param_keys[cursor_idx]
+        params[key] += change_delta
+        change_delta = 0
+        last_apply = now
+        draw()
+
+    time.sleep_ms(5)
