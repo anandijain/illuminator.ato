@@ -6,10 +6,6 @@ import st7789py as st7789
 import vga2_16x32 as font
 import math
 
-OPTO_PIN = Pin(16, Pin.OUT)
-FET_PIN  = Pin(17, Pin.OUT)
-LED      = Pin("LED", Pin.OUT)
-
 def on_off(p, delay=0.1):
     p.value(1)
     time.sleep(delay)
@@ -47,35 +43,10 @@ def timelapse(interval, duration):
         next_t = time.ticks_add(next_t, int(interval * 1000))
         time.sleep_ms(max(0, time.ticks_diff(next_t, time.ticks_ms())))
 
-params = {"interval [s]": 30, "duration [hr]": 36}
-param_keys = list(params)
-N_PARAMS = len(params)
-
-spi = SPI(1, baudrate=40_000_000, polarity=0, phase=0,
-          sck=Pin(10), mosi=Pin(11))
-
-dc  = Pin(8,  Pin.OUT)
-cs  = Pin(9,  Pin.OUT)
-rst = Pin(12, Pin.OUT)
-
-bl = PWM(Pin(13)); bl.freq(1000); bl.duty_u16(65535)
-
-tft = st7789.ST7789(spi, 240, 320, reset=rst, dc=dc, cs=cs, rotation=1)
-tft.fill(st7789.RED)
-
-interval = 30
-dur_hr = 36
-
-cursor_idx = 0
 def draw():
     for i, key in enumerate(param_keys):
         prefix = "> " if i == cursor_idx else "  "
         tft.text(font, "{}{}: {}".format(prefix, key, params[key]), 0, i*font.HEIGHT)
-draw()
-
-change_delta = 0   # -1, 0, +1 pending changes for current field
-next_pending = False
-start_pending = False
 
 def incr_cb(p):
     global change_delta
@@ -95,10 +66,40 @@ def start_cb(p):
     # print("starting timelapse")
 
 
+OPTO_PIN = Pin(16, Pin.OUT)
+FET_PIN  = Pin(17, Pin.OUT)
+LED      = Pin("LED", Pin.OUT)
+OPTO_PIN.off()
+FET_PIN.off()
+
+spi = SPI(1, baudrate=40_000_000, polarity=0, phase=0,
+          sck=Pin(10), mosi=Pin(11))
+dc  = Pin(8,  Pin.OUT)
+cs  = Pin(9,  Pin.OUT)
+rst = Pin(12, Pin.OUT)
+
+bl = PWM(Pin(13)); bl.freq(1000); bl.duty_u16(65535)
+
 decr = Pin(21, Pin.IN, Pin.PULL_UP)
 incr = Pin(20, Pin.IN, Pin.PULL_UP)
 next = Pin(19, Pin.IN, Pin.PULL_UP)
 start = Pin(18, Pin.IN, Pin.PULL_UP)
+
+params = {"interval [s]": 5, "duration [hr]": 10}
+param_keys = list(params)
+N_PARAMS = len(params)
+
+
+tft = st7789.ST7789(spi, 240, 320, reset=rst, dc=dc, cs=cs, rotation=1)
+tft.fill(st7789.RED)
+
+cursor_idx = 0
+
+draw()
+
+change_delta = 0   # -1, 0, +1 pending changes for current field
+next_pending = False
+start_pending = False
 
 decr.irq(trigger=Pin.IRQ_RISING, handler=decr_cb)
 incr.irq(trigger=Pin.IRQ_RISING, handler=incr_cb)
