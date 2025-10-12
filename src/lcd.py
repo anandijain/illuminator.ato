@@ -15,33 +15,35 @@ def on_off(p, delay=0.1):
 def snap():
     # Example: gate power on, pulse opto, gate off
     FET_PIN.value(1)
-    on_off(OPTO_PIN, delay=0.3)
+    on_off(OPTO_PIN, delay=0.2)
     FET_PIN.value(0)
     LED.toggle()  # visual heartbeat
 
 def timelapse(interval, duration):
-    """
-    interval: seconds between snaps (float ok)
-    duration: total run time in HOURS, or the string "forever"
-    """
+    global running
+    running = True
+
     if duration == "forever":
         next_t = time.ticks_ms()
-        while True:
+        while running:
             snap()
             next_t = time.ticks_add(next_t, int(interval * 1000))
             time.sleep_ms(max(0, time.ticks_diff(next_t, time.ticks_ms())))
-        # never returns
+        return  # exit when running is cleared
 
-    dur_sec = duration * 3600  # duration is in HOURS per docstring
+    dur_sec = duration * 3600
     num_snaps = math.ceil(dur_sec / interval)
 
     next_t = time.ticks_ms()
     for i in range(num_snaps):
+        if not running:
+            break  # early stop
         snap()
         if i == num_snaps - 1:
-            break  # don't sleep after last snap
+            break
         next_t = time.ticks_add(next_t, int(interval * 1000))
         time.sleep_ms(max(0, time.ticks_diff(next_t, time.ticks_ms())))
+    running = False  # finished
 
 def draw():
     for i, key in enumerate(param_keys):
@@ -61,9 +63,13 @@ def next_cb(p):
     next_pending = True
 
 def start_cb(p):
-    global start_pending
-    start_pending = True
-    # print("starting timelapse")
+    global start_pending, running
+    if running:
+        # request stop
+        running = False
+        tft.text(font, "stopping timelapse...", 0, (N_PARAMS+1)*font.HEIGHT)
+    else:
+        start_pending = True  # request start
 
 
 OPTO_PIN = Pin(16, Pin.OUT)
@@ -100,6 +106,7 @@ draw()
 change_delta = 0   # -1, 0, +1 pending changes for current field
 next_pending = False
 start_pending = False
+running = False
 
 decr.irq(trigger=Pin.IRQ_RISING, handler=decr_cb)
 incr.irq(trigger=Pin.IRQ_RISING, handler=incr_cb)
@@ -107,7 +114,7 @@ next.irq(trigger=Pin.IRQ_RISING, handler=next_cb)
 start.irq(trigger=Pin.IRQ_RISING, handler=start_cb)
 
 last_apply = time.ticks_ms()
-APPLY_EVERY_MS = 30   # small debounce / coalesce window
+APPLY_EVERY_MS = 100   # small debounce / coalesce window
 
 while True:
     try: 
@@ -118,10 +125,11 @@ while True:
             next_pending = False
             cursor_idx = (cursor_idx + 1) % N_PARAMS
             draw()
-        if start_pending: 
-            next_pending = False
-            tft.text(font, "starting timelapse...", 0, (N_PARAMS+1)*font.HEIGHT)
-            timelapse(params["interval [s]"], params["duration [hr]"])
+        if start_pending:
+            start_pending = False
+            if not running:
+                tft.text(font, "starting timelapse...", 0, (N_PARAMS+1)*font.HEIGHT)
+                timelapse(params["interval [s]"], params["duration [hr]"])
         # coalesce +/- presses and apply periodically (debounce-ish)
         if change_delta != 0 and time.ticks_diff(now, last_apply) >= APPLY_EVERY_MS:
             key = param_keys[cursor_idx]
