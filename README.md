@@ -1,5 +1,7 @@
 # illuminator
 
+[Onshape CAD](https://cad.onshape.com/documents/1effa1616a317fb48e7ffbf3/w/ae2fe78dc753e01a133967d8/e/a3ef25508ab919a74d42227d?renderMode=0&uiState=692bc1250b43d9fa593e8de2)
+[YouTube](https://youtube.com/playlist?list=PL79kqjVnD2ENzYDWSiDm63MTBGJOrp2XY&si=uE8JB_jzI9ln5rCQ)
 
 petri dish illuminator for timelapses 
 
@@ -52,6 +54,8 @@ The path is 5v -> (R -> LED)* -> FET_DRAIN -> FET_SOURCE -> GND.
 
 ## lcd
 * to get mc_dc2_test/lcd.py to work you need to copy [this](https://github.com/russhughes/st7789py_mpy/blob/master/lib/st7789py.py) to /lib/ with `mpremote`
+
+remember to also copy the fonts 
 
 the interface of the lcd is three buttons, two are for incrementing and decrementing the timelapse parameters the third is for advancing to the next parameter
 
