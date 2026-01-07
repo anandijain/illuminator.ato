@@ -76,8 +76,9 @@ Done:
 ![PCB](https://github.com/user-attachments/assets/e48f4eda-4fe0-48a2-bc14-357973688e0f)
 ![3D](https://github.com/user-attachments/assets/b024521e-90c8-4085-ab17-e967515a940d)
 
-## diffuser
-* https://www.amazon.com/dp/B0818HYY8G
+## some BOM items
+* [light diffuser](https://www.amazon.com/dp/B0818HYY8G)
+* [hot plate for SMD soldering](https://www.amazon.com/dp/B082H12PPT)
 
 ### 8/28/25 
 
