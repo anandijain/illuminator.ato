@@ -1,10 +1,14 @@
 # illuminator
+a device to capture timelapses of fluorescent petri dishes
 
 [Onshape CAD](https://cad.onshape.com/documents/1effa1616a317fb48e7ffbf3/w/ae2fe78dc753e01a133967d8/e/a3ef25508ab919a74d42227d?renderMode=0&uiState=692bc1250b43d9fa593e8de2)
+
 [YouTube](https://youtube.com/playlist?list=PL79kqjVnD2ENzYDWSiDm63MTBGJOrp2XY&si=uE8JB_jzI9ln5rCQ)
 
-petri dish illuminator for timelapses 
+![picture](https://github.com/user-attachments/assets/9d6b4c95-0213-47ea-a1d4-1937a4401e66)
 
+
+petri dish illuminator for timelapses 
 the functionality basically has an 
 * mcu turn on a bunch of lights
 * light goes thru a diffuser
